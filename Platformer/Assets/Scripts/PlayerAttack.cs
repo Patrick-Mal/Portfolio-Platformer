@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
             LayerMask actor = LayerMask.GetMask("Actor");
             Debug.Log("Attack");
             RaycastHit2D[] attackTargets;
-            attackTargets = Physics2D.BoxCastAll(gameObject.transform.position, new Vector2(range, 5), 0f, new Vector2(1,0), 0f, actor);
+            attackTargets = Physics2D.BoxCastAll(gameObject.transform.position, new Vector2(range, 0.5f), 0f, new Vector2(1,0), 0f, actor);
             Debug.Log(attackTargets.Length);
             foreach(RaycastHit2D i in attackTargets)
             {
