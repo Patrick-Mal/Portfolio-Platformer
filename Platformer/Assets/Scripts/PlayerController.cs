@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
 
         if (IsGrounded())
         {
-            Debug.Log("Grounded");
             timeSinceGrounded = lateJumpLeniency;
         }
 
@@ -70,8 +69,6 @@ public class PlayerController : MonoBehaviour
             jumpQueue = earlyJumpLeniency;
         }
 
-        Debug.Log(jumpQueue);
-        Debug.Log(timeSinceGrounded);
 
         if (jumpQueue > 0 && timeSinceGrounded > 0)
         {
