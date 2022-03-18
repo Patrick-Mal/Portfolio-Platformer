@@ -18,7 +18,15 @@ public class RedCube : Enemy
 
     public override void takeDamage(float damage, float knockback)
     {
-        Debug.Log("Ouch. Damage: " + damage.ToString());
+        health -= damage;
+        if(health <= 0)
+        {
+            Debug.Log("Dead");
+        }
+        else
+        {
+            Debug.Log(health);
+        }
     }
 
 

@@ -10,12 +10,7 @@ abstract public class Enemy : MonoBehaviour
 
     public virtual void takeDamage(float damage, float knockback)
     {
-        //insert default implementation to be inherited here
     }
 
-    void Update()
-    {
-        
-    }
 
 }
