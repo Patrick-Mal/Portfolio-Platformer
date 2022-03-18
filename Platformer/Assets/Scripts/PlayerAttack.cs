@@ -15,9 +15,7 @@ public class PlayerAttack : MonoBehaviour
         mousePos.x = mousePos.x - gameObject.transform.position.x;
         mousePos.y = mousePos.y - gameObject.transform.position.y;
 
-        
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.LookRotation(new Vector2(mousePos.x, mousePos.y), Vector3.forward);
+        Quaternion rotation = Quaternion.LookRotation(new Vector2(mousePos.x, mousePos.y), Vector3.up);
         //Gizmos.DrawWireCube(gameObject.transform.position, new Vector2(0.5f, 0.5f));
         Gizmos.color = Color.magenta;
         Gizmos.matrix = Matrix4x4.TRS(gameObject.transform.position, rotation, Vector3.one);
@@ -48,7 +46,9 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log(attackTargets.Length);
             foreach(RaycastHit2D i in attackTargets)
             {
-                Debug.Log(i);
+                
+                //i.transform.gameObject.SendMessage("TakeDamage", damage);
+                i.transform.gameObject.GetComponent<Enemy>().takeDamage(damage, 5);
             }
         }
     }
