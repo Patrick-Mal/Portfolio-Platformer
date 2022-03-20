@@ -86,12 +86,12 @@ public class PlayerController : MonoBehaviour
         //Improves feeling of jump by falling faster
         if (rb.velocity.y < 0)
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * fallMultiplier * Time.deltaTime;
+            rb.velocity +=  Physics2D.gravity.y * fallMultiplier * Time.deltaTime * Vector2.up;
         }
         //Make player not jump as high when not holding space
         else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * lowJumpMultiplier * Time.deltaTime;
+            rb.velocity +=  Physics2D.gravity.y * lowJumpMultiplier * Time.deltaTime * Vector2.up;
         }
     }
 

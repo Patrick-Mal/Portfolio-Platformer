@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
 
     Vector3 mousePos;
 
+    /*
     private void OnDrawGizmos()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -21,11 +22,7 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.matrix = Matrix4x4.TRS(gameObject.transform.position, rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector2.zero, new Vector2(0.2f, 0.2f));
     }
-
-    void Start()
-    {
-        
-    }
+    */
 
     void Update()
     {
@@ -51,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
                 //If the object found inherits from the abstract enemy class, run the takeDamage function.
                 if (i.transform.gameObject.TryGetComponent<Enemy>(out var enemy))
                 {
-                    enemy.takeDamage(damage, 5);
+                    enemy.TakeDamage(damage, 5);
                 }
             }
         }

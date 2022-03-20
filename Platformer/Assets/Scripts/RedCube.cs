@@ -4,19 +4,7 @@ using UnityEngine;
 
 public class RedCube : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public override void takeDamage(float damage, float knockback)
+    public override void TakeDamage(float damage, float knockback)
     {
         health -= damage;
         if(health <= 0)

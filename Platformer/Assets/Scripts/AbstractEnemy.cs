@@ -8,7 +8,7 @@ abstract public class Enemy : MonoBehaviour
     public float health;
     public float weight;
 
-    public virtual void takeDamage(float damage, float knockback)
+    public virtual void TakeDamage(float damage, float knockback)
     {
     }
 
