@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public float damage;
     public float range;
+    public float knockback;
 
     Vector3 mousePos;
 
@@ -48,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
                 //If the object found inherits from the abstract enemy class, run the takeDamage function.
                 if (i.transform.gameObject.TryGetComponent<Enemy>(out var enemy))
                 {
-                    enemy.TakeDamage(damage, 5);
+                    enemy.TakeDamage(damage, knockback, gameObject.transform.position);
                 }
             }
         }
