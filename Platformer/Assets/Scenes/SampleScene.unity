@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &439897637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1047857992613070574, guid: 7422dd64257a8f24694bf7f177756683, type: 3}
+  m_PrefabInstance: {fileID: 2022995262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,6 +727,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7397874475590073148, guid: 8f9b5706c4e314b42ae6b2b8fbe4f18a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 439897637}
     - target: {fileID: 909478049683014143, guid: 8f9b5706c4e314b42ae6b2b8fbe4f18a, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -779,10 +788,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1118085645, guid: 8f9b5706c4e314b42ae6b2b8fbe4f18a, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: -7397874475590073148, guid: 8f9b5706c4e314b42ae6b2b8fbe4f18a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 439897637}
     - target: {fileID: 909478049683014143, guid: 8f9b5706c4e314b42ae6b2b8fbe4f18a, type: 3}
       propertyPath: m_Name
       value: Enemy

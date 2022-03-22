@@ -42,7 +42,6 @@ public class PlayerAttack : MonoBehaviour
             //Boxcast towards the mouse with a distance of "range", finding only objects on the actor layer. Acts as a sword swing
             float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
             attackTargets = Physics2D.BoxCastAll(gameObject.transform.position, new Vector2(0.2f, 0.2f), angle, relMousePos, range, actor);
-            Debug.Log(attackTargets.Length);
             //Iterating all items found in the raycast
             foreach(RaycastHit2D i in attackTargets)
             {

@@ -125,7 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 25
   weight: 2
-  speed: 2
+  player: {fileID: 1047857992613070574, guid: 7422dd64257a8f24694bf7f177756683, type: 3}
+  speed: 2.5
   platform:
     serializedVersion: 2
     m_Bits: 64

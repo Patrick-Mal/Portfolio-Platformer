@@ -13,6 +13,8 @@ public class RedCube : Enemy
 
     float noMoveUntil;
 
+    Vector3 playerPos;
+
     [SerializeField] private LayerMask platform;
 
     private void Start()
@@ -25,42 +27,67 @@ public class RedCube : Enemy
 
     private void FixedUpdate()
     {
+        playerPos = player.transform.position;
         if (aggro)
         {
+            /*
+            if((playerPos - transform.position).x > 0)
+            {
+                rb.velocity = new Vector2(speed, rb.velocity.y);
+            }
+            */
+            if (IsGrounded() & Time.time > noMoveUntil)
+            {
+                float directionValue = ((playerPos - transform.position).x / Mathf.Abs((playerPos - transform.position).x));
+                rb.velocity = new Vector2(speed * directionValue, rb.velocity.y);
+            }
+                
 
+            if ((playerPos - transform.position).magnitude > 8)
+            {
+                Debug.Log("De-aggro");
+                aggro = false;
+            }
         }
         else
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(currentVelocity,0), 0.6f, platform);
-            
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(currentVelocity, 0), 0.6f, platform);
+
             if (hit.collider != null)
             {
-                Debug.Log("Here");
                 currentVelocity = -currentVelocity;
             }
             if (IsGrounded() & Time.time > noMoveUntil)
             {
-                rb.velocity = new Vector2(currentVelocity, rb.velocity.y);
-                //rb.AddForce(new Vector2(currentVelocity, 0), ForceMode2D.Impulse);
-                
+                rb.velocity = new Vector2(currentVelocity * 0.8f , rb.velocity.y);
+                //rb.AddForce(new Vector2(currentVelocity, 0));
+
             }
-            
+            if ((playerPos - transform.position).magnitude < 3)
+            {
+                aggro = true;
+            }
+
+
         }
     }
 
-    public override void TakeDamage(float damage, float knockback, Vector2 playerLocation)
+    public override void TakeDamage(float damage, float knockback, Vector2 damageLocation)
     {
-        Vector2 directionFromPlayer = new Vector2(gameObject.transform.position.x - playerLocation.x, gameObject.transform.position.y - playerLocation.y);
+        Vector2 directionFromPlayer = new Vector2(gameObject.transform.position.x - damageLocation.x, gameObject.transform.position.y - damageLocation.y);
         directionFromPlayer.Normalize();
+        directionFromPlayer *=  10;
         health -= damage;
+
+        aggro = true;
         if(health <= 0)
         {
-            Debug.Log("Dead");
+            Object.Destroy(this.gameObject);
         }
         else
         {
             noMoveUntil = Time.time + 0.4f;
-            rb.AddForce(new Vector2((directionFromPlayer.x * knockback * 9) / weight, (((directionFromPlayer.y * 9) + 5) * knockback ) / weight), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2((directionFromPlayer.x * knockback) / weight, (((directionFromPlayer.y) + 5) * knockback ) / weight), ForceMode2D.Impulse);
             //rb.velocity = new Vector2((directionFromPlayer.x * knockback)/weight, ((directionFromPlayer.y + 2) * knockback)/weight);
         }
     }

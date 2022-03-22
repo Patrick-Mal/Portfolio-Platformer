@@ -28,29 +28,53 @@ public class PlayerController : MonoBehaviour
     float jumpWindow;
     float groundedWindow;
 
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
     }
 
-    void Update()
+    private void Update()
     {
+        //Setting a window until which the player counts as having jumped (to allow for the player to jump very slightly before landing)
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpWindow = Time.time + earlyJumpLeniency;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        bool isGrounded = IsGrounded();
         //Left/Right movement applied to player
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * acceleration * Time.deltaTime, 0));
+            rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * acceleration, 0));
         }
-        else
+        //else
+        else if(isGrounded)
         {
             //If player isn't pressing left or right, slow character down
-            rb.AddForce(new Vector2(rb.velocity.x * -deceleration * Time.deltaTime, 0));
+            rb.AddForce(new Vector2(rb.velocity.x * -deceleration, 0));
             //Brings the player to a complete stop
-            if(-1 < rb.velocity.x && rb.velocity.x < 1)
+            if(-0.8 < rb.velocity.x && rb.velocity.x < 0.8)
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
         }
+        else
+        {
+            //If player isn't pressing left or right, slow character down
+            rb.AddForce(new Vector2(rb.velocity.x * -deceleration / 3, 0));
+            //Brings the player to a complete stop
+            if (-0.8 < rb.velocity.x && rb.velocity.x < 0.8)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+        }
+
 
         //Implements a max speed
         if(rb.velocity.x > maxSpeed)
@@ -63,15 +87,11 @@ public class PlayerController : MonoBehaviour
         }
 
         //Setting a window until which the player counts as being grounded (to allow for the player to jump very slightly after leaving a ledge)
-        if (IsGrounded())
+        if (isGrounded)
         {
             groundedWindow = Time.time + lateJumpLeniency;
         }
-        //Setting a window until which the player counts as having jumped (to allow for the player to jump very slightly before landing)
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpWindow = Time.time + earlyJumpLeniency;
-        }
+        
 
         //Jump when conditions are met
         if (Time.time < jumpWindow && Time.time < groundedWindow)
@@ -86,12 +106,12 @@ public class PlayerController : MonoBehaviour
         //Improves feeling of jump by falling faster
         if (rb.velocity.y < 0)
         {
-            rb.velocity +=  Physics2D.gravity.y * fallMultiplier * Time.deltaTime * Vector2.up;
+            rb.velocity +=  Physics2D.gravity.y * fallMultiplier * 0.02f * Vector2.up;
         }
         //Make player not jump as high when not holding space
         else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            rb.velocity +=  Physics2D.gravity.y * lowJumpMultiplier * Time.deltaTime * Vector2.up;
+            rb.velocity +=  Physics2D.gravity.y * lowJumpMultiplier * 0.02f * Vector2.up;
         }
     }
 
