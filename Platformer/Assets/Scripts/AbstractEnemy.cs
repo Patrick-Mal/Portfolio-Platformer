@@ -3,16 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-abstract public class Enemy : MonoBehaviour
+abstract public class Enemy : Actor
 {
-    public float health;
-    public float weight;
     public GameObject player;
-
-    public virtual void TakeDamage(float damage, float knockback, Vector2 damageLocation)
-    {
-
-    }
 
 
 }

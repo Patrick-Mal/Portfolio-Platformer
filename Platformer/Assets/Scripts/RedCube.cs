@@ -6,12 +6,10 @@ public class RedCube : Enemy
 {
     public float speed;
     bool aggro;
-    Rigidbody2D rb;
     BoxCollider2D bc;
 
     float currentVelocity;
 
-    float noMoveUntil;
 
     Vector3 playerPos;
 
@@ -72,25 +70,6 @@ public class RedCube : Enemy
         }
     }
 
-    public override void TakeDamage(float damage, float knockback, Vector2 damageLocation)
-    {
-        Vector2 directionFromPlayer = new Vector2(gameObject.transform.position.x - damageLocation.x, gameObject.transform.position.y - damageLocation.y);
-        directionFromPlayer.Normalize();
-        directionFromPlayer *=  10;
-        health -= damage;
-
-        aggro = true;
-        if(health <= 0)
-        {
-            Object.Destroy(this.gameObject);
-        }
-        else
-        {
-            noMoveUntil = Time.time + 0.35f;
-            rb.AddForce(new Vector2((directionFromPlayer.x * knockback) / weight, (((directionFromPlayer.y) + 5) * knockback ) / weight), ForceMode2D.Impulse);
-            //rb.velocity = new Vector2((directionFromPlayer.x * knockback)/weight, ((directionFromPlayer.y + 2) * knockback)/weight);
-        }
-    }
 
     bool IsGrounded()
     {

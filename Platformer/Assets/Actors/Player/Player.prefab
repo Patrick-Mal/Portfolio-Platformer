@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8636797048666450622}
   - component: {fileID: -2657536499899681537}
   - component: {fileID: -6896865563033282403}
-  - component: {fileID: 2491746922877642198}
+  - component: {fileID: -5337397365605352064}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -155,6 +155,7 @@ MonoBehaviour:
   platform:
     serializedVersion: 2
     m_Bits: 64
+  player: {fileID: -5337397365605352064}
   earlyJumpLeniency: 0.12
   lateJumpLeniency: 0.12
 --- !u!114 &-6896865563033282403
@@ -171,8 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   range: 2
-  knockback: 25
---- !u!114 &2491746922877642198
+  knockback: 10
+--- !u!114 &-5337397365605352064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,5 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facbfbf2fae50764fb3c22f9a4d4a3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   health: 50
-  weight: 10
+  weight: 3
+  ccUntil: 0

@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D bc;
 
+
+
     public float fallMultiplier;
     public float lowJumpMultiplier;
 
@@ -15,7 +17,12 @@ public class PlayerController : MonoBehaviour
     public float acceleration;
     public float jumpHeight;
 
-    [SerializeField] private LayerMask platform;
+    [SerializeField] 
+    private LayerMask platform;
+    [SerializeField]
+    Player player;
+
+    
 
     //Variables to define how many seconds before landing on the floor you can press jump and still jump
     //and how many seconds after leaving the floor you can press jump and still jump.
@@ -48,6 +55,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         bool isGrounded = IsGrounded();
+        
         //Left/Right movement applied to player
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
@@ -56,26 +64,34 @@ public class PlayerController : MonoBehaviour
         //else
         else if(isGrounded)
         {
-            //If player isn't pressing left or right, slow character down
-            rb.AddForce(new Vector2(rb.velocity.x * -deceleration, 0));
-            //Brings the player to a complete stop
-            if(-0.8 < rb.velocity.x && rb.velocity.x < 0.8)
+            if(Time.time > player.noMoveUntil)
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                //If player isn't pressing left or right, slow character down
+                rb.AddForce(new Vector2(rb.velocity.x * -deceleration, 0));
+                //Brings the player to a complete stop
+                if (-0.8 < rb.velocity.x && rb.velocity.x < 0.8)
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
             }
+            
         }
         else
         {
-            //If player isn't pressing left or right, slow character down
-            rb.AddForce(new Vector2(rb.velocity.x * -deceleration / 3, 0));
-            //Brings the player to a complete stop
-            if (-0.8 < rb.velocity.x && rb.velocity.x < 0.8)
+            if (Time.time > player.noMoveUntil)
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                //If player isn't pressing left or right, slow character down
+                rb.AddForce(new Vector2(rb.velocity.x * -deceleration / 3, 0));
+                //Brings the player to a complete stop
+                if (-0.8 < rb.velocity.x && rb.velocity.x < 0.8)
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
             }
+            
         }
-
-
+        
+        
         //Implements a max speed
         if(rb.velocity.x > maxSpeed)
         {
