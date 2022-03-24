@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
     }
 
-    private void Update()
+    void Update()
     {
         //Setting a window until which the player counts as having jumped (to allow for the player to jump very slightly before landing)
         if (Input.GetButtonDown("Jump"))
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private bool IsGrounded()
+    bool IsGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.2f, platform);
         return raycastHit.collider != null;

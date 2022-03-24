@@ -11,6 +11,7 @@ abstract public class Enemy : MonoBehaviour
 
     public virtual void TakeDamage(float damage, float knockback, Vector2 damageLocation)
     {
+
     }
 
 

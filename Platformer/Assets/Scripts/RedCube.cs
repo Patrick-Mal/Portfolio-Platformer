@@ -17,7 +17,7 @@ public class RedCube : Enemy
 
     [SerializeField] private LayerMask platform;
 
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
@@ -25,7 +25,7 @@ public class RedCube : Enemy
         currentVelocity = speed;
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         playerPos = player.transform.position;
         if (aggro)
@@ -86,13 +86,13 @@ public class RedCube : Enemy
         }
         else
         {
-            noMoveUntil = Time.time + 0.4f;
+            noMoveUntil = Time.time + 0.35f;
             rb.AddForce(new Vector2((directionFromPlayer.x * knockback) / weight, (((directionFromPlayer.y) + 5) * knockback ) / weight), ForceMode2D.Impulse);
             //rb.velocity = new Vector2((directionFromPlayer.x * knockback)/weight, ((directionFromPlayer.y + 2) * knockback)/weight);
         }
     }
 
-    private bool IsGrounded()
+    bool IsGrounded()
     {
         
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.05f, platform);
