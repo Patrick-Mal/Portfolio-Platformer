@@ -15,14 +15,13 @@ public class Player : Actor
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        
         if (other.gameObject.CompareTag("Hazard"))
         {
             Debug.Log("Collide");
 
+            //If the object collided with has the HazardStats component
             if (other.gameObject.TryGetComponent<HazardStats>(out var hazardStats))
-            {
-                
+            {               
                 TakeDamage(hazardStats.damage, hazardStats.knockback, other.transform.position);
             }
             else

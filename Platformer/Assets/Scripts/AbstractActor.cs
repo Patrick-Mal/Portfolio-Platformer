@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//The abstract class that all enemies and players inherit from directly or indirectly
 abstract public class Actor : MonoBehaviour
 {
-    [HideInInspector]
-    public Rigidbody2D rb;
+    protected Rigidbody2D rb;
+    
 
     public float health;
     public float weight = 5;
@@ -13,9 +14,9 @@ abstract public class Actor : MonoBehaviour
     [HideInInspector]
     public float noMoveUntil;
 
+
     public virtual void TakeDamage(float damage, float knockback, Vector2 damageLocation)
     {
-        Debug.Log("Take damage " + damage + " " + knockback);
         health -= damage;
 
         if (health <= 0)
@@ -32,9 +33,13 @@ abstract public class Actor : MonoBehaviour
     {
         if (rb != null)
         {
+            //Create a directional vector from the damage source to the actor taking damage
             Vector2 directionFromHazard = new Vector2(gameObject.transform.position.x - damageLocation.x, gameObject.transform.position.y - damageLocation.y);
             directionFromHazard.Normalize();
+            //Create a pure -1 or 1 direction of knockback along the x axis
             float leftRight = (directionFromHazard.x / Mathf.Abs(directionFromHazard.x));
+            //Applies the force, partially away from the damage source and partially a flat amount up and left or right.
+            //Provides a larger knockback when attacking upwards but still has some knockback when attacking down
             rb.AddForce(new Vector2(((directionFromHazard.x * knockback * 2) + ( leftRight * knockback * 5) ) / weight, ((directionFromHazard.y * 1.5f * knockback) + (2.5f * knockback)) / weight), ForceMode2D.Impulse);
             noMoveUntil = Time.time + 0.4f;
         }

@@ -28,19 +28,16 @@ public class RedCube : Enemy
         playerPos = player.transform.position;
         if (aggro)
         {
-            /*
-            if((playerPos - transform.position).x > 0)
-            {
-                rb.velocity = new Vector2(speed, rb.velocity.y);
-            }
-            */
+            //If it can move freely
             if (IsGrounded() & Time.time > noMoveUntil)
             {
+                //Gives 1 if player is to the right or -1 if player is to the left
                 float directionValue = ((playerPos - transform.position).x / Mathf.Abs((playerPos - transform.position).x));
+                //Sets new velocity towards the player
                 rb.velocity = new Vector2(speed * directionValue, rb.velocity.y);
             }
                 
-
+            //If the player is out of range, de-aggro
             if ((playerPos - transform.position).magnitude > 8)
             {
                 Debug.Log("De-aggro");
@@ -49,16 +46,18 @@ public class RedCube : Enemy
         }
         else
         {
+            //Check if it has collided with a wall
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(currentVelocity, 0), 0.6f, platform);
 
             if (hit.collider != null)
             {
+                //Switch direction
                 currentVelocity = -currentVelocity;
             }
             if (IsGrounded() & Time.time > noMoveUntil)
             {
+                //Move (Slightly slower than if it was aggroed
                 rb.velocity = new Vector2(currentVelocity * 0.8f , rb.velocity.y);
-                //rb.AddForce(new Vector2(currentVelocity, 0));
 
             }
             if ((playerPos - transform.position).magnitude < 3)

@@ -19,7 +19,6 @@ public class PlayerAttack : MonoBehaviour
         nextAttackTime = Time.time;
     }
 
-    //TODO: Move most of this to fixed update
     void Update()
     {
         if (Input.GetButtonDown("Attack"))

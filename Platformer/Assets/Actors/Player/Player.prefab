@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   range: 2
-  knockback: 10
+  knockback: 5
 --- !u!114 &-5337397365605352064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facbfbf2fae50764fb3c22f9a4d4a3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
   health: 50
   weight: 3
-  ccUntil: 0
+  noMoveUntil: 0
