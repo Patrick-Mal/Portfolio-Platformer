@@ -151,7 +151,7 @@ MonoBehaviour:
   deceleration: 12
   maxSpeed: 7
   acceleration: 60
-  jumpHeight: 12
+  jumpHeight: 14
   platform:
     serializedVersion: 2
     m_Bits: 64
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   range: 2
-  knockback: 5
+  knockback: 3
 --- !u!114 &-5337397365605352064
 MonoBehaviour:
   m_ObjectHideFlags: 0
