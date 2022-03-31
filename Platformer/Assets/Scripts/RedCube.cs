@@ -14,6 +14,7 @@ public class RedCube : Enemy
     Vector3 playerPos;
 
     [SerializeField] private LayerMask platform;
+    [SerializeField] private LayerMask actor;
 
     void Start()
     {
@@ -21,11 +22,14 @@ public class RedCube : Enemy
         bc = GetComponent<BoxCollider2D>();
         aggro = false;
         currentVelocity = speed;
+        player = GameObject.Find("Player");
     }
 
     void FixedUpdate()
     {
+        
         playerPos = player.transform.position;
+
         if (aggro)
         {
             //If it can move freely
@@ -40,23 +44,27 @@ public class RedCube : Enemy
             //If the player is out of range, de-aggro
             if ((playerPos - transform.position).magnitude > 8)
             {
-                Debug.Log("De-aggro");
                 aggro = false;
             }
         }
         else
         {
             //Check if it has collided with a wall
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(currentVelocity, 0), 0.6f, platform);
+            RaycastHit2D hitWall = Physics2D.Raycast(transform.position, new Vector2(currentVelocity, 0), 0.6f, platform);
 
-            if (hit.collider != null)
+            //RaycastHit2D hitActor = Physics2D.Raycast(transform.position, new Vector2(currentVelocity, 0), 0.6f, actor);
+
+
+            //if (hitWall.collider != null || hitActor.collider != null)
+            if (hitWall.collider != null)
             {
+                Debug.Log("Change direction");
                 //Switch direction
                 currentVelocity = -currentVelocity;
             }
             if (IsGrounded() & Time.time > noMoveUntil)
             {
-                //Move (Slightly slower than if it was aggroed
+                //Move (Slightly slower than if it was aggro)
                 rb.velocity = new Vector2(currentVelocity * 0.8f , rb.velocity.y);
 
             }
