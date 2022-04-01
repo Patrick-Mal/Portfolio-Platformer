@@ -124,14 +124,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ad992788b0e5549b4559602aad694d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
   health: 25
   weight: 3
+  noMoveUntil: 0
   player: {fileID: 1047857992613070574, guid: 7422dd64257a8f24694bf7f177756683, type: 3}
   speed: 2.5
   platform:
     serializedVersion: 2
     m_Bits: 64
+  actor:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!50 &-4110991631545912076
 Rigidbody2D:
   serializedVersion: 4

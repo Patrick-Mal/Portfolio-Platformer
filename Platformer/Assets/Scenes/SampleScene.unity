@@ -366,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints: {fileID: 1812732510}
   enemyType: {fileID: 909478049683014143, guid: 8f9b5706c4e314b42ae6b2b8fbe4f18a, type: 3}
-  spawnDelay: 10
+  spawnDelay: 4
 --- !u!4 &896867740
 Transform:
   m_ObjectHideFlags: 0

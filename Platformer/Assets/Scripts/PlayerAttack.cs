@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
         if (attackPressed & Time.time >= nextAttackTime)
         {
             attackPressed = false;
-            nextAttackTime = Time.time + 0.2f;
+            nextAttackTime = Time.time + 0.125f;
             
             Vector2 relMousePos = GetRelativeMousePos();
             RaycastHit2D[] attackTargets;

@@ -17,7 +17,6 @@ public class Player : Actor
     {
         if (other.gameObject.CompareTag("Hazard"))
         {
-            Debug.Log("Collide");
 
             //If the object collided with has the HazardStats component
             if (other.gameObject.TryGetComponent<HazardStats>(out var hazardStats))

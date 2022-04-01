@@ -26,7 +26,6 @@ public class Spawn : MonoBehaviour
         {
             int index = Random.Range(1, spawnPointTransforms.Length - 1);
             Instantiate(enemyType, spawnPointTransforms[index]);
-            Debug.Log(spawnPointTransforms[index].position);
             nextSpawn = Time.time + spawnDelay;
         }
 

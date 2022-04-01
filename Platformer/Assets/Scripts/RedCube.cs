@@ -42,7 +42,7 @@ public class RedCube : Enemy
             }
                 
             //If the player is out of range, de-aggro
-            if ((playerPos - transform.position).magnitude > 8)
+            if ((playerPos - transform.position).magnitude > 6)
             {
                 aggro = false;
             }
@@ -52,13 +52,10 @@ public class RedCube : Enemy
             //Check if it has collided with a wall
             RaycastHit2D hitWall = Physics2D.Raycast(transform.position, new Vector2(currentVelocity, 0), 0.6f, platform);
 
-            //RaycastHit2D hitActor = Physics2D.Raycast(transform.position, new Vector2(currentVelocity, 0), 0.6f, actor);
+            RaycastHit2D hitActor = Physics2D.Raycast(transform.position, new Vector2(currentVelocity, 0), 0.6f, actor);
 
-
-            //if (hitWall.collider != null || hitActor.collider != null)
-            if (hitWall.collider != null)
+            if (hitWall.collider != null || hitActor.collider != null)
             {
-                Debug.Log("Change direction");
                 //Switch direction
                 currentVelocity = -currentVelocity;
             }
@@ -68,7 +65,7 @@ public class RedCube : Enemy
                 rb.velocity = new Vector2(currentVelocity * 0.8f , rb.velocity.y);
 
             }
-            if ((playerPos - transform.position).magnitude < 3)
+            if ((playerPos - transform.position).magnitude < 1.5)
             {
                 aggro = true;
             }
@@ -80,8 +77,8 @@ public class RedCube : Enemy
 
     bool IsGrounded()
     {
-        
+        RaycastHit2D hitActor = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.05f, actor);
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.05f, platform);
-        return raycastHit.collider != null;
+        return (raycastHit.collider != null || hitActor.collider != null);
     }
 }
