@@ -9,6 +9,7 @@ public class Player : Actor
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
     }
 
 

@@ -6,20 +6,24 @@ using UnityEngine;
 abstract public class Actor : MonoBehaviour
 {
     protected Rigidbody2D rb;
-    
 
-    public float health;
+    public float maxHealth;
+    public float currentHealth;
     public float weight = 5;
 
     [HideInInspector]
     public float noMoveUntil;
 
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
     public virtual void TakeDamage(float damage, float knockback, Vector2 damageLocation)
     {
-        health -= damage;
+        currentHealth -= damage;
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
