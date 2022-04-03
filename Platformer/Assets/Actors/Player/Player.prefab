@@ -157,7 +157,7 @@ MonoBehaviour:
     m_Bits: 64
   player: {fileID: -5337397365605352064}
   earlyJumpLeniency: 0.12
-  lateJumpLeniency: 0.12
+  lateJumpLeniency: 0.07
 --- !u!114 &-6896865563033282403
 MonoBehaviour:
   m_ObjectHideFlags: 0

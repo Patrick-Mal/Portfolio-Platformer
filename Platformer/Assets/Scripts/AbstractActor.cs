@@ -8,7 +8,7 @@ abstract public class Actor : MonoBehaviour
     protected Rigidbody2D rb;
 
     public float maxHealth;
-    public float currentHealth;
+    [HideInInspector] public float currentHealth;
     public float weight = 5;
 
     [HideInInspector]

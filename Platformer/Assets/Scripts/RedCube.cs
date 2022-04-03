@@ -10,6 +10,8 @@ public class RedCube : Enemy
 
     float currentVelocity;
 
+    GameObject gameManager;
+
 
     Vector3 playerPos;
 
@@ -22,7 +24,9 @@ public class RedCube : Enemy
         bc = GetComponent<BoxCollider2D>();
         aggro = false;
         currentVelocity = speed;
+        currentHealth = maxHealth;
         player = GameObject.Find("Player");
+        gameManager = GameObject.Find("Game Manager");
     }
 
     void FixedUpdate()
@@ -74,7 +78,12 @@ public class RedCube : Enemy
         }
     }
 
+    public override void Die()
+    {
+        Object.Destroy(this.gameObject);
+        gameManager.GetComponent<Score>().AddScore(1);
 
+    }
     bool IsGrounded()
     {
         RaycastHit2D hitActor = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.05f, actor);

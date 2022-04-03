@@ -15,7 +15,8 @@ public class Spawn : MonoBehaviour
     void Start()
     {
         spawnPointTransforms = spawnPoints.GetComponentsInChildren<Transform>();
-
+        int index = Random.Range(1, spawnPointTransforms.Length - 1);
+        Instantiate(enemyType, spawnPointTransforms[index]);
         nextSpawn = Time.time + spawnDelay;
     }
 

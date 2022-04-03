@@ -586,8 +586,9 @@ GameObject:
   m_Component:
   - component: {fileID: 896867740}
   - component: {fileID: 896867739}
+  - component: {fileID: 896867741}
   m_Layer: 0
-  m_Name: Game Controller
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -622,6 +623,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &896867741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896867738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c9a4fe9aab76b48abe9ced563540f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!1001 &923566429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -824,10 +838,10 @@ RectTransform:
   m_Father: {fileID: 2642636}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -468.46735, y: 223.36737}
-  m_SizeDelta: {x: 194.5453, y: 30.6253}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 105.53265, y: -30.63263}
+  m_SizeDelta: {x: 194.54529, y: 30.625305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262115531
 MonoBehaviour:
