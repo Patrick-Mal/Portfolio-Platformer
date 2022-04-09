@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : Actor
 {
-
+    public GameOverScreen gameOverScreen;
 
     private void Start()
     {
@@ -35,6 +35,8 @@ public class Player : Actor
 
     override public void Die()
     {
-        Debug.Log("Dead");
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        Time.timeScale = 0;
+        gameOverScreen.Activate();
     }
 }
